@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Stone Paper and Scissors</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="message">
+            <div class="left">
+                Round <span class="roundno">1</span>
+            </div>
+            <div class="right" id="BestScore">
+                BestScore:
+                <span class='computerScore'>0</span>
+                /
+                <span class="playerScore">0</span>
+            </div>
+        </div>
+
+        <div class="images">
+            <div class="computer img">
+                <img src="./images/STONEComputer.png" />
+            </div>
+            <div class="player img">
+                <img src="./images/STONEPlayer.png" />
+            </div>
+        </div>
+
+        <div class="points">
+            COMPUTER <span class="computerPoints">0</span>
+            /
+            <span class="playerPoints">0</span> PLAYER
+        </div>
+
+        <div class="instant">
+            <span class="instantres">000</span>
+        </div>
+
+        <div class="options">
+            <button type="button">STONE</button>
+            <button type="button">PAPER</button>
+            <button type="button">SCISSORS</button>
+        </div>
+    </div>
+
+    <div class="popup">
+        <div class="popup-content">
+            <h2>Welcome</h2>
+
+            <p>Instructions
+                <br />
+            <ul>
+                <li>The number of rounds can be selected by you.Select from the options below.
+                </li>
+                <li>In any round only one choice can be made.The option you first click is the final option you
+                    select.Hence be careful.
+                </li>
+                <li>The winner of the game is the one with maximum points after all the rounds end
+                </li>
+            </ul>
+            <b>
+                Happy Gaming!!!
+            </b>
+            </p>
+
+            <form>
+                <fieldset>
+                    <legend>Please select your prefered no of rounds</legend>
+                    <div>
+                        <input type="radio" id="r5" name="roundNum" value="5" />
+                        <label for="r5">5</label>
+                        <input type="radio" id="r10" name="roundNum" value="10" />
+                        <label for="r10">10</label>
+                        <input type="radio" id="r15" name="roundNum" value="15" />
+                        <label for="r15">15</label>
+                    </div>
+                    <div>
+                        <button type="submit">Submit</button>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+
+    <div class="endpopup">
+        <div class="endpopup-content">
+            <h1>New best Score!!!</h1>
+            <h2 class="finalres">00</h2>
+            <div class="endbuttons">
+                <button type="button" class="reset">New Game</button>
+                <button type="button" class="xe">Exit</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="./script.js" async defer></script>
+</body>
+
+</html>
