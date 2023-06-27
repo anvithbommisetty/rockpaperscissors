@@ -215,7 +215,7 @@ function displayScores() {
 	let scores = localStorage.getItem('rpsScore');
 
 	scores = scores ? JSON.parse(scores) : [];
-	if (!scores) {
+	if (scores===[] && scores[idx]===undefined) {
 		scoresContainer.innerHTML = `BestScore:<span class='computerScore'>0</span>/<span class="playerScore">0</span>`;
 	} else {
 		scoresContainer.innerHTML = `BestScore:
