@@ -85,7 +85,6 @@ body {
 }
 
 .options button,
-.xe,
 .reset {
     padding: 10px;
     background: none;
@@ -99,6 +98,9 @@ body {
     cursor: pointer;
     outline: none;
     transition: 0.2s all linear;
+}
+.reset{
+    width: 120px;
 }
 
 .options button:hover {
@@ -157,8 +159,9 @@ body {
     width: 100vw;
     height: 100vh;
     background-color: rgba(0, 0, 0, .3);
-    display: grid;
-    place-content: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     opacity: 0;
     pointer-events: none;
     transition: 200ms ease-in-out opacity;
@@ -177,13 +180,19 @@ body {
         200ms ease-in-out transform;
     position: relative;
 }
-
+.endpopup-content{
+    width:15vw;
+}
 .endpopup-content h2 {
     font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-
-.endpopup-content h1 {
-    visibility: hidden;
+.endbuttons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .showPopup {
@@ -191,9 +200,3 @@ body {
     transform: translateY(0);
     pointer-events: all;
 }
-
-/*.endbuttons{
-    display:flex;
-    justify-content: space-around;
-    align-items: center;
-}*/
