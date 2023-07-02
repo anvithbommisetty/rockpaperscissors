@@ -1,7 +1,6 @@
 const popup = document.querySelector('.popup');
 const container = document.querySelector('.container');
 const endpopup = document.querySelector('.endpopup');
-const xe = document.querySelector('.xe');
 const roundno = document.querySelector(".roundno");
 const computer = document.querySelector(".computer img");
 const player = document.querySelector(".player img");
@@ -13,13 +12,25 @@ const instantres = document.querySelector('.instantres');
 const finalres = document.querySelector('.finalres');
 const form = document.querySelector("form");
 
-let rr = 0;
+function disableAlloptions() {
+	for (let i = 0; i < options.length; i++) {
+		options[i].disabled = true;
+	}
+}
+
+function enableAlloptions() {
+	for (let i = 0; i < options.length; i++) {
+		options[i].disabled = false;
+	}
+}
 
 window.addEventListener('load', () => {
 	popup.classList.add('showPopup');
 	popup.childNodes[1].classList.add('showPopup');
 	container.style.filter = 'blur(25px)';
 });
+
+let rr = 0;
 
 form.addEventListener("submit", (event) => {
 	const data = new FormData(form);
@@ -35,34 +46,64 @@ form.addEventListener("submit", (event) => {
 	popup.childNodes[1].classList.remove('showPopup');
 	container.style.filter = 'none';
 	displayScores();
-},
-	false
-);
-
-xe.addEventListener('click', () => {
-	var confirmed = window.confirm('Are you sure you want to exit?');
-
-	// Close the window if the user confirms
-	if (confirmed) {
-		let computer = parseInt(computerPoints.innerHTML);
-		let player = parseInt(playerPoints.innerHTML);
-		saveScore(player, computer);
-		window.close();
-	}
 });
+
+function saveScore(player, computer) {
+	console.log(player, computer);
+	let rp = rr;
+	rp = rr / 5 - 1;
+	let scores = localStorage.getItem('rpsScore');
+	let temp = [
+		{
+			game: 0,
+			player: 0,
+			computer: 0
+		},
+		{
+			game: 1,
+			player: 0,
+			computer: 0
+		},
+		{
+			game: 2,
+			player: 0,
+			computer: 0
+		}
+	];
+	scores = scores ? JSON.parse(scores) : temp;
+
+	if (player >= computer) {
+		if (player > scores[rp].player) {
+			scores[rp].player = player;
+			scores[rp].computer = computer;
+		} else if (player == scores[rp].player) {
+			scores[rp].player = player;
+			scores[rp].computer = Math.min(computer, scores[rp].computer);
+		}
+	}
+
+	localStorage.setItem('rpsScore', JSON.stringify(scores));
+}
+
+function displayScores() {
+	let scoresContainer = document.getElementById('BestScore');
+	let idx = (rr / 5) - 1;
+
+	let scores = localStorage.getItem('rpsScore');
+
+	scores = scores ? JSON.parse(scores) : [];
+	if (scores===[] && scores[idx]===undefined) {
+		scoresContainer.innerHTML = `BestScore:<span class='computerScore'>0</span>/<span class="playerScore">0</span>`;
+	} else {
+		scoresContainer.innerHTML = `BestScore:
+		<span class='computerScore'>${scores[idx].computer}</span>/
+		<span class="playerScore">${scores[idx].player}</span>`;
+	}
+}
 
 let round = 1;
 let games = 0;
-function disableAlloptions() {
-	for (let i = 0; i < options.length; i++) {
-		options[i].disabled = true;
-	}
-}
-function enableAlloptions() {
-	for (let i = 0; i < options.length; i++) {
-		options[i].disabled = false;
-	}
-}
+
 options.forEach((option) => {
 	option.addEventListener("click", () => {
 		computer.classList.add("shakeComputer");
@@ -171,55 +212,3 @@ options.forEach((option) => {
 	});
 });
 
-function saveScore(player, computer) {
-	console.log(player, computer);
-	rr = rr / 5 - 1;
-
-	let scores = localStorage.getItem('rpsScore');
-	let temp = [
-		{
-			game: 0,
-			player: 0,
-			computer: 0
-		},
-		{
-			game: 1,
-			player: 0,
-			computer: 0
-		},
-		{
-			game: 2,
-			player: 0,
-			computer: 0
-		}
-	];
-	scores = scores ? JSON.parse(scores) : temp;
-
-	if (player >= computer) {
-		if (player > scores[rr].player) {
-			scores[rr].player = player;
-			scores[rr].computer = computer;
-		} else if (player == scores[rr].player) {
-			scores[rr].player = player;
-			scores[rr].computer = Math.min(computer, scores[rr].computer);
-		}
-	}
-
-	localStorage.setItem('rpsScore', JSON.stringify(scores));
-}
-
-function displayScores() {
-	let scoresContainer = document.getElementById('BestScore');
-	let idx = (rr / 5) - 1;
-
-	let scores = localStorage.getItem('rpsScore');
-
-	scores = scores ? JSON.parse(scores) : [];
-	if (scores===[] && scores[idx]===undefined) {
-		scoresContainer.innerHTML = `BestScore:<span class='computerScore'>0</span>/<span class="playerScore">0</span>`;
-	} else {
-		scoresContainer.innerHTML = `BestScore:
-		<span class='computerScore'>${scores[idx].computer}</span>/
-		<span class="playerScore">${scores[idx].player}</span>`;
-	}
-}
