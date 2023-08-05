@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LeaderBoard</title>
+  <link rel="stylesheet" href="/top.css">
+</head>
+
+<body>
+
+  <div class="button-container">
+    <button class="round-button" id="5">5 Rounds</button>
+    <button class="round-button" id="10">10 Rounds</button>
+    <button class="round-button" id="15">15 Rounds</button>
+  </div>
+  <div class="table-container">
+    <% scores.forEach((round, idx)=> { %>
+      <table id="table<%= idx+1 %>">
+        <thead>
+          <tr>
+            <th>Username</th>
+            <th>User Score</th>
+            <th>Computer Score</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% round.forEach((item)=> { %>
+            <tr>
+              <td>
+                <%= item.username %>
+              </td>
+              <td>
+                <%= item.userScore %>
+              </td>
+              <td>
+                <%= item.computerScore %>
+              </td>
+            </tr>
+            <% }); %>
+        </tbody>
+      </table>
+      <% }); %>
+  </div>
+  <script src="/top.js" async defer></script>
+</body>
+
+</html>
