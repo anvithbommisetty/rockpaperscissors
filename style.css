@@ -200,3 +200,39 @@ body {
     transform: translateY(0);
     pointer-events: all;
 }
+/*Responsive*/
+@media screen  and (min-width:330px) and (max-width:768px){
+    .popup{
+        font-size: smaller;
+    }
+    .popup-content{
+        font-size:smaller;
+        padding: 5px 10px;
+    }
+    .container,.endpopup-content{
+        width: clamp(290px, 90vw, 480px);
+        font-size:smaller;
+    }
+    .left{
+        padding-left: 1px;
+    }
+    .right{
+        padding-right:1px;
+    }
+    .options button,
+    .reset {
+    padding: 5px;
+    background: none;
+    color: black;
+    font-family: "Poppins";
+    border: 1px solid black;
+    padding: 1em;
+    border-radius: 7px;
+    width: 75px;
+    text-align: center;
+    font-size: smaller;
+    cursor: pointer;
+    outline: none;
+    transition: 0.2s all linear;
+}
+}
